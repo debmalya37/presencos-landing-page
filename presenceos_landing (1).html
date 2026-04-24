@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PresenceOS — Get High-Ticket Clients Without Ads</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0805;
+  --bg2: #110e08;
+  --bg3: #1a1610;
+  --gold: #d4a843;
+  --gold2: #f0c96a;
+  --gold-dim: rgba(212,168,67,0.12);
+  --gold-border: rgba(212,168,67,0.25);
+  --white: #f5f0e8;
+  --muted: rgba(245,240,232,0.55);
+  --muted2: rgba(245,240,232,0.3);
+  --border: rgba(245,240,232,0.08);
+  --green-bg: rgba(34,80,50,0.3);
+  --green-border: rgba(80,160,100,0.3);
+  --green-text: #7dd4a0;
+  --red-bg: rgba(100,20,20,0.3);
+  --red-border: rgba(180,60,60,0.3);
+  --red-text: #f4a0a0;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- UTILITIES ---- */
+.wrap { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+.wrap-wide { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+em { font-style: italic; }
+strong { font-weight: 500; }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,8,5,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--gold2);
+  letter-spacing: .5px;
+}
+.nav-brand span { color: var(--muted); font-weight: 400; }
+.nav-apply {
+  background: var(--gold);
+  color: var(--bg);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .2s;
+}
+.nav-apply:hover { background: var(--gold2); }
+
+/* ---- HERO ---- */
+.hero {
+  padding: 130px 24px 90px;
+  max-width: 740px;
+  margin: 0 auto;
+  text-align: left;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-dim);
+  border: 0.5px solid var(--gold-border);
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold2);
+  letter-spacing: .5px;
+  margin-bottom: 32px;
+}
+.hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(38px, 6.5vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 28px;
+  letter-spacing: -.5px;
+}
+.hero h1 em { color: var(--gold2); }
+.hero-body {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+.hero-body strong { color: var(--white); font-weight: 500; }
+.hero-cta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold);
+  color: var(--bg);
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 36px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background .2s, transform .1s;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+.btn-ghost {
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color .2s;
+}
+.btn-ghost:hover { color: var(--white); }
+.hero-social-proof {
+  margin-top: 52px;
+  padding-top: 32px;
+  border-top: 0.5px solid var(--border);
+  display: flex; gap: 40px; flex-wrap: wrap;
+}
+.proof-stat .num {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--gold2);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.proof-stat .label { font-size: 13px; color: var(--muted); }
+
+/* ---- DIVIDER ---- */
+.divider {
+  height: 0.5px;
+  background: var(--border);
+  margin: 0 24px;
+}
+
+/* ---- LETTER SECTION ---- */
+.letter {
+  padding: 80px 24px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.letter-from {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+}
+.letter p {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 22px;
+}
+.letter p strong { color: var(--white); }
+.letter p em { color: var(--gold2); font-style: italic; }
+.letter .callout {
+  background: var(--gold-dim);
+  border-left: 2px solid var(--gold);
+  padding: 20px 24px;
+  margin: 32px 0;
+  border-radius: 0 8px 8px 0;
+}
+.letter .callout p {
+  font-size: 18px;
+  color: var(--white);
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---- REALITY CHECK ---- */
+.reality { background: var(--bg2); padding: 72px 0; }
+.reality-inner { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.section-h {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.section-h em { color: var(--gold2); }
+.section-sub { font-size: 16px; color: var(--muted); margin-bottom: 40px; line-height: 1.7; }
+
+.pain-list { display: flex; flex-direction: column; gap: 2px; }
+.pain-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 18px 20px;
+  border-radius: 8px;
+  transition: background .2s;
+}
+.pain-item:hover { background: var(--bg3); }
+.pain-item .q-mark {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: -2px;
+}
+.pain-item p { font-size: 16px; color: var(--muted); line-height: 1.6; }
+.pain-item p strong { color: var(--white); }
+
+/* ---- THE SHIFT ---- */
+.shift-section { padding: 80px 0; }
+.shift-inner { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+.shift-box {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+.shift-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 0.5px solid var(--border);
+}
+.shift-row:last-child { border-bottom: none; }
+.shift-cell {
+  padding: 20px 24px;
+  font-size: 14px;
+  line-height: 1.55;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.shift-cell:first-child { border-right: 0.5px solid var(--border); }
+.shift-cell.bad { color: var(--red-text); background: var(--red-bg); }
+.shift-cell.good { color: var(--green-text); background: var(--green-bg); }
+.shift-cell .ico { flex-shrink: 0; margin-top: 1px; font-size: 13px; }
+.shift-header { display: grid; grid-template-columns: 1fr 1fr; }
+.shift-header-cell {
+  padding: 12px 24px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.shift-header-cell:first-child {
+  color: var(--red-text);
+  background: var(--red-bg);
+  border-right: 0.5px solid var(--border);
+}
+.shift-header-cell:last-child { color: var(--green-text); background: var(--green-bg); }
+
+/* ---- WHAT WE DO ---- */
+.what-section { background: var(--bg2); padding: 80px 0; }
+.what-inner { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+.outcome-cards { display: flex; flex-direction: column; gap: 2px; margin-top: 40px; }
+.outcome-card {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  align-items: flex-start;
+  transition: border-color .25s;
+  cursor: default;
+}
+.outcome-card:hover { border-color: var(--gold-border); }
+.outcome-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-dim);
+  border: 0.5px solid var(--gold-border);
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.outcome-content h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.outcome-content p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+.outcome-content .result-pill {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--green-bg);
+  border: 0.5px solid var(--green-border);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--green-text);
+  font-weight: 500;
+}
+
+/* ---- STAGES ---- */
+.stages-section { padding: 80px 0; }
+.stages-inner { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+.stage-cards { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
+.stage-card {
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.stage-card:hover, .stage-card.open { border-color: var(--gold-border); }
+.stage-header {
+  padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background: var(--bg3);
+}
+.stage-left { display: flex; align-items: center; gap: 16px; }
+.stage-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  width: 32px; height: 32px;
+  background: var(--gold-dim);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.stage-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; color: var(--white); }
+.stage-revenue {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.stage-chevron { font-size: 18px; color: var(--muted2); transition: transform .2s; }
+.stage-card.open .stage-chevron { transform: rotate(180deg); }
+.stage-body {
+  display: none;
+  padding: 0 24px 24px;
+  background: var(--bg3);
+  border-top: 0.5px solid var(--border);
+}
+.stage-card.open .stage-body { display: block; padding-top: 20px; }
+.stage-body p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+.stage-body p:last-child { margin-bottom: 0; }
+.stage-body strong { color: var(--white); }
+.stage-body .focus-label { font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; display: block; margin-top: 14px; }
+
+/* ---- TESTIMONIALS ---- */
+.testi-section { background: var(--bg2); padding: 80px 0; }
+.testi-inner { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+.testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+.testi-card {
+  background: var(--bg3);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: border-color .2s;
+}
+.testi-card:hover { border-color: var(--gold-border); }
+.testi-card.wide { grid-column: span 2; }
+.testi-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; }
+.testi-quote {
+  font-family: 'Instrument Serif', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.55;
+  flex: 1;
+}
+.testi-footer { display: flex; align-items: center; gap: 10px; }
+.testi-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gold-dim);
+  border: 0.5px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 700;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.testi-name { font-size: 13px; font-weight: 500; color: var(--white); }
+.testi-role { font-size: 12px; color: var(--muted2); }
+.testi-result {
+  display: inline-block;
+  background: var(--green-bg);
+  border: 0.5px solid var(--green-border);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green-text);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* ---- APPLICATION SECTION ---- */
+.apply-section { padding: 80px 0 100px; }
+.apply-inner { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+.apply-box {
+  background: var(--bg3);
+  border: 0.5px solid var(--gold-border);
+  border-radius: 20px;
+  padding: 48px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.apply-box::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.apply-box h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+.apply-box h2 em { color: var(--gold2); }
+.apply-box p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+
+/* FORM */
+.form-steps-bar { display: flex; gap: 6px; margin-bottom: 32px; }
+.fstep { height: 2px; flex: 1; border-radius: 2px; background: rgba(255,255,255,0.1); transition: background .3s; }
+.fstep.done { background: var(--gold); }
+.fstep.active { background: rgba(212,168,67,0.5); }
+
+.form-panel { display: none; }
+.form-panel.show { display: block; }
+.fpanel-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.fpanel-title { font-family: 'Instrument Serif', serif; font-size: 22px; color: var(--white); margin-bottom: 26px; line-height: 1.3; }
+
+.fg { margin-bottom: 18px; }
+.fg label { display: block; font-size: 13px; font-weight: 500; color: rgba(245,240,232,0.75); margin-bottom: 7px; }
+.fg label span { font-weight: 400; color: var(--muted2); }
+.fg input, .fg textarea, .fg select {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--white);
+  outline: none;
+  transition: border .2s, background .2s;
+  appearance: none;
+}
+.fg input::placeholder, .fg textarea::placeholder { color: var(--muted2); }
+.fg input:focus, .fg textarea:focus, .fg select:focus {
+  border-color: var(--gold-border);
+  background: rgba(212,168,67,0.04);
+}
+.fg textarea { min-height: 88px; resize: vertical; }
+.fg select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%23d4a843' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.fg select option { background: #1a1610; color: var(--white); }
+
+.radio-stack { display: flex; flex-direction: column; gap: 8px; }
+.ro { position: relative; }
+.ro input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
+.ro label {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 13px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--muted);
+  transition: all .18s;
+  line-height: 1.5;
+  margin: 0;
+}
+.ro label:hover { border-color: var(--gold-border); color: var(--white); }
+.ro input[type=radio]:checked + label {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+  color: var(--white);
+}
+.rdot {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  flex-shrink: 0; margin-top: 1px;
+  transition: all .18s;
+}
+.ro input[type=radio]:checked + label .rdot {
+  border-color: var(--gold);
+  background: var(--gold);
+  box-shadow: inset 0 0 0 3px var(--bg3);
+}
+
+.disq-warn {
+  display: none;
+  background: var(--red-bg);
+  border: 0.5px solid var(--red-border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--red-text);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+.disq-warn strong { display: block; margin-bottom: 4px; color: #f8a8a8; font-size: 14px; }
+
+.fnav { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+.fbtn-back {
+  background: none; border: 0.5px solid rgba(255,255,255,0.15);
+  color: var(--muted); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; padding: 12px 22px; border-radius: 8px; cursor: pointer;
+  transition: all .2s;
+}
+.fbtn-back:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+.fbtn-next {
+  flex: 1; background: var(--gold); color: var(--bg);
+  font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+  padding: 14px 28px; border-radius: 8px; border: none; cursor: pointer;
+  transition: background .2s; max-width: 220px;
+}
+.fbtn-next:hover { background: var(--gold2); }
+.fbtn-submit {
+  width: 100%; background: var(--gold); color: var(--bg);
+  font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+  padding: 18px 40px; border-radius: 8px; border: none; cursor: pointer;
+  transition: all .2s; margin-top: 8px;
+}
+.fbtn-submit:hover { background: var(--gold2); transform: translateY(-1px); }
+.fnote { font-size: 12px; color: var(--muted2); text-align: center; margin-top: 12px; }
+
+.thankyou { display: none; text-align: center; padding: 40px 20px; }
+.thankyou .ty-mark {
+  font-family: 'Instrument Serif', serif;
+  font-size: 56px; color: var(--gold2); margin-bottom: 16px; line-height: 1;
+}
+.thankyou h3 { font-family: 'Instrument Serif', serif; font-size: 30px; color: var(--white); margin-bottom: 10px; }
+.thankyou p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 380px; margin: 0 auto 28px; }
+.ty-next { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 0 auto; text-align: left; }
+.ty-row { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--muted); line-height: 1.55; }
+.ty-row .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--gold-dim); border: 0.5px solid var(--gold-border); color: var(--gold); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+
+/* ---- FOOTER ---- */
+footer {
+  background: var(--bg);
+  border-top: 0.5px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted2);
+}
+footer strong { color: var(--gold); font-weight: 500; }
+
+/* ---- RESPONSIVE ---- */
+@media(max-width: 600px) {
+  .hero { padding: 100px 24px 64px; }
+  .hero-social-proof { gap: 24px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-card.wide { grid-column: span 1; }
+  .shift-row { grid-template-columns: 1fr; }
+  .shift-cell:first-child { border-right: none; border-bottom: 0.5px solid var(--border); }
+  .shift-header { grid-template-columns: 1fr; }
+  .apply-box { padding: 32px 24px; }
+  nav .nav-brand span { display: none; }
+}
+
+ /* ---- REVEAL ANIMATIONS ---- */
+ /* ---- THE "READING LIGHT" REVEAL ---- */
+/* Container for spacing */
+.reveal-wrapper {
+  margin-bottom: 24px;
+  display: block;
+}
+
+/* The actual text reveal */
+.letter p, 
+.letter .letter-from, 
+.letter .callout p {
+  display: inline; /* Critical: allows gradient to flow word-by-word */
+  color: rgba(245, 240, 232, 0.242); /* Dim state */
+  line-height: 1.8;
+  
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(
+    to right,
+    #f5f0e8 0%, 
+    #f5f0e8 var(--progress, 0%), 
+    transparent var(--progress, 0%)
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.letter strong, .letter em, .letter a {
+  color: inherit;
+}
+
+/* Keep the callout styling */
+.letter .callout {
+  background: var(--gold-dim);
+  border-left: 2px solid var(--gold);
+  padding: 20px 24px;
+  margin: 10px 0;
+  border-radius: 0 8px 8px 0;
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">PresenceOS <span>™</span></div>
+  <a href="#apply" class="nav-apply">Apply Now</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">For Astrologers, Healers & B2B Practitioners</div>
+  <h1>Stop being invisible.<br>Start attracting <em>premium clients</em><br>without running a single ad.</h1>
+  <p class="hero-body">
+    You built a real practice. You have real expertise.
+    But your online presence is silently losing you clients every single day —
+    and <strong>you don't even know who they are.</strong>
+  </p>
+  <div class="hero-cta-row">
+    <a href="#apply" class="btn-primary">Apply for the Clarity Call →</a>
+    <a href="#what-we-do" class="btn-ghost">See how it works ↓</a>
+  </div>
+  <div class="hero-social-proof">
+    <div class="proof-stat">
+      <div class="num">200+</div>
+      <div class="label">Practitioners scaled</div>
+    </div>
+    <div class="proof-stat">
+      <div class="num">₹3–8L</div>
+      <div class="label">Avg. annual revenue added</div>
+    </div>
+    <div class="proof-stat">
+      <div class="num">Zero</div>
+      <div class="label">Ad spend needed</div>
+    </div>
+    <div class="proof-stat">
+      <div class="num">90 days</div>
+      <div class="label">To a full calendar</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LETTER -->
+<div class="letter">
+  <div class="reveal-wrapper">
+    <div class="letter-from">A direct note from the desk of Debmalya</div>
+  </div>
+
+  <div class="reveal-wrapper">
+    <p>Let me guess.</p>
+  </div>
+
+  <div class="reveal-wrapper">
+    <p>You've been posting on Instagram. Writing captions. Doing reels. Maybe you even hired someone to "handle your social media." Your WhatsApp bio says everything about what you do. You have a website — maybe even a beautiful one.</p>
+  </div>
+
+  <div class="reveal-wrapper">
+    <strong>
+    <p>And still — the enquiries are inconsistent. The serious clients are few. And every month feels like starting over.</p></strong>
+  </div>
+
+  <div class="reveal-wrapper">
+    <p>Meanwhile, you see other astrologers and practitioners — some with half your experience — charging three times what you charge. Fully booked. Instagram full of testimonials.</p>
+  </div>
+
+  <div class="reveal-wrapper">
+    <p>You wonder: <em>what do they have that I don't?</em></p>
+  </div>
+
+  <div class="reveal-wrapper">
+    <p>Here's the truth nobody tells you:</p>
+  </div>
+
+  <div class="reveal-wrapper">
+    <div class="callout">
+      <p>"They don't have more talent. They have a system that makes them look like the obvious choice — before a client ever talks to them."</p>
+    </div>
+  </div>
+
+  <div class="reveal-wrapper">
+    <p>That's what we build. Not websites. Not social media posts. <strong>A presence that positions you as the premium, go-to expert in your field</strong> — so the right clients find you, trust you immediately, and pay without negotiating.</p>
+  </div>
+
+  <div class="reveal-wrapper">
+    <p>No ads. No dancing on reels. No cold DMs. Just an online presence engineered so well that it does the selling while you do the healing.</p>
+  </div>
+
+  <div class="reveal-wrapper">
+    <p>If you're ready to find out exactly what's blocking that for you right now — <a href="#apply" style="color:var(--gold2)">apply for the 20-minute clarity call below.</a></p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- REALITY CHECK -->
+<div class="reality">
+  <div class="reality-inner">
+    <div class="section-label">The Real Problem</div>
+    <h2 class="section-h">These thoughts running through your head<br>at <em>11 PM</em> — we've heard them all.</h2>
+    <p class="section-sub">You're not failing. You're just operating without the right system. Here's what it sounds like from inside.</p>
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="q-mark">"</div>
+        <p>I post every day. I get likes, sometimes even comments. <strong>But nobody actually books a session.</strong> What is wrong with me?"</p>
+      </div>
+      <div class="pain-item">
+        <div class="q-mark">"</div>
+        <p>I know I'm worth more than what I charge. But every time I raise my prices, <strong>people disappear or ask for a discount.</strong> So I stay stuck."</p>
+      </div>
+      <div class="pain-item">
+        <div class="q-mark">"</div>
+        <p>I have a website. It looks okay. But <strong>I don't think anyone finds it on Google.</strong> I don't even know how to check."</p>
+      </div>
+      <div class="pain-item">
+        <div class="q-mark">"</div>
+        <p>My clients love me. They tell their friends. But <strong>referrals are random — I can't plan anything around them.</strong> Some months are great. Most aren't."</p>
+      </div>
+      <div class="pain-item">
+        <div class="q-mark">"</div>
+        <p>I've tried everything — reels, carousels, YouTube, WhatsApp broadcast. <strong>I'm exhausted and I still can't figure out what actually works.</strong>"</p>
+      </div>
+      <div class="pain-item">
+        <div class="q-mark">"</div>
+        <p>Other practitioners seem to be growing. I don't know if they're running ads, or paying someone, or just lucky. <strong>I feel like I'm missing something fundamental.</strong>"</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE SHIFT -->
+<div class="shift-section">
+  <div class="shift-inner">
+    <div class="section-label">Why Most Approaches Fail</div>
+    <h2 class="section-h">The difference between <em>busy</em><br>and <em>booked.</em></h2>
+    <p class="section-sub">It's not about doing more. It's about doing the right things in the right order for your specific niche.</p>
+    <div class="shift-box">
+      <div class="shift-header">
+        <div class="shift-header-cell">✗ What everyone tells you to do</div>
+        <div class="shift-header-cell">✓ What actually works</div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-cell bad"><span class="ico">—</span> Post more reels, dance more, go viral</div>
+        <div class="shift-cell good"><span class="ico">→</span> Build a presence that attracts buyers, not viewers</div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-cell bad"><span class="ico">—</span> Run Facebook ads and pay for every lead</div>
+        <div class="shift-cell good"><span class="ico">→</span> Own your Google rankings so leads come free, forever</div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-cell bad"><span class="ico">—</span> Build a fancy website and wait for magic</div>
+        <div class="shift-cell good"><span class="ico">→</span> Build a conversion system that turns visitors into enquiries</div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-cell bad"><span class="ico">—</span> Hire a social media manager to post for you</div>
+        <div class="shift-cell good"><span class="ico">→</span> Have a strategy so every post serves a purpose</div>
+      </div>
+      <div class="shift-row">
+        <div class="shift-cell bad"><span class="ico">—</span> Compete on price with everyone in your niche</div>
+        <div class="shift-cell good"><span class="ico">→</span> Position so well that price stops being the conversation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT WE DO -->
+<div class="what-section" id="what-we-do">
+  <div class="what-inner">
+    <div class="section-label">What We Actually Do</div>
+    <h2 class="section-h">We engineer your online presence<br>into a <em>client acquisition system.</em></h2>
+    <p class="section-sub">We don't offer packages. We diagnose your exact situation and build what's missing. Here's what that looks like in practice.</p>
+    <div class="outcome-cards">
+      <div class="outcome-card">
+        <div class="outcome-num">01</div>
+        <div class="outcome-content">
+          <h3>We find the one thing costing you the most clients</h3>
+          <p>Before we do anything, we audit your entire online presence — website, Google visibility, social profiles, and how you're positioned against competitors in your niche. Most practitioners have one root problem masquerading as ten smaller ones. We find it in the first 20 minutes.</p>
+          <span class="result-pill">Outcome: You know exactly what to fix — and in what order</span>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">02</div>
+        <div class="outcome-content">
+          <h3>We rebuild how the world sees you online</h3>
+          <p>Your website, your Google Business, your social bio — every touchpoint a potential client hits before they decide to contact you. We make each one do a job: establish trust, communicate your premium positioning, and make taking the next step feel obvious.</p>
+          <span class="result-pill">Outcome: Visitors land on your page and feel "this is exactly who I need"</span>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">03</div>
+        <div class="outcome-content">
+          <h3>We make you findable by people who are ready to pay</h3>
+          <p>SEO done right for spiritual practitioners and B2B service providers means owning the exact searches your ideal clients type when they're ready to buy — not just curious. We build this foundation so you rank, get found, and get booked without running a single ad.</p>
+          <span class="result-pill">Outcome: Organic enquiries that grow month over month</span>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">04</div>
+        <div class="outcome-content">
+          <h3>We give you a social strategy that converts, not just impresses</h3>
+          <p>Not a content calendar full of generic ideas. A clear content system with a purpose behind every post — designed to move followers from "interesting" to "I need to book this person." Specific to your niche, your voice, your audience's psychology.</p>
+          <span class="result-pill">Outcome: Social media finally starts sending you real enquiries</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STAGES -->
+<div class="stages-section">
+  <div class="stages-inner">
+    <div class="section-label">Where Are You Right Now?</div>
+    <h2 class="section-h">Every practitioner is at a different stage.<br><em>Which one is you?</em></h2>
+    <p class="section-sub">Click on your current stage. We work differently depending on where you are — and the clarity call is where we figure out what you need.</p>
+    <div class="stage-cards">
+
+      <div class="stage-card" onclick="toggleStage(this)">
+        <div class="stage-header">
+          <div class="stage-left">
+            <div class="stage-num">01</div>
+            <div class="stage-title">Just Getting Started</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div class="stage-revenue">₹0–₹20k/mo</div>
+            <div class="stage-chevron">⌄</div>
+          </div>
+        </div>
+        <div class="stage-body">
+          <span class="focus-label">Your Situation</span>
+          <p>You have the knowledge and you've done a few sessions, but you don't yet have a consistent flow of clients. You might have an Instagram page and a basic website — but neither is working hard for you.</p>
+          <span class="focus-label">Your Biggest Block</span>
+          <p><strong>You're invisible.</strong> The right clients don't know you exist. And the ones who find you can't tell why you're different from the dozen other practitioners they've seen. The Clarity Call will show you exactly what foundation to build first so you don't waste the next 6 months.</p>
+        </div>
+      </div>
+
+      <div class="stage-card" onclick="toggleStage(this)">
+        <div class="stage-header">
+          <div class="stage-left">
+            <div class="stage-num">02</div>
+            <div class="stage-title">Getting Clients, But Inconsistently</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div class="stage-revenue">₹20k–₹80k/mo</div>
+            <div class="stage-chevron">⌄</div>
+          </div>
+        </div>
+        <div class="stage-body">
+          <span class="focus-label">Your Situation</span>
+          <p>You have clients — good ones, who give you referrals. Some months are great. But it's unpredictable. You're still dependent on word of mouth and you have no reliable way to get new clients on demand.</p>
+          <span class="focus-label">Your Biggest Block</span>
+          <p><strong>You have no system.</strong> Everything you've built is fragile — it depends on the last person referring the next. One quiet month and the anxiety kicks in. We'll build the organic infrastructure (SEO, website, social) that creates a steady flow of inbound enquiries so you stop depending on luck.</p>
+        </div>
+      </div>
+
+      <div class="stage-card" onclick="toggleStage(this)">
+        <div class="stage-header">
+          <div class="stage-left">
+            <div class="stage-num">03</div>
+            <div class="stage-title">Growing But Stuck on the Ceiling</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div class="stage-revenue">₹80k–₹2L/mo</div>
+            <div class="stage-chevron">⌄</div>
+          </div>
+        </div>
+        <div class="stage-body">
+          <span class="focus-label">Your Situation</span>
+          <p>You're doing well — consistent clients, decent revenue. But you've hit a plateau. You can't take more clients without burning out, you can't raise prices without pushback, and you feel like you're trading time for money indefinitely.</p>
+          <span class="focus-label">Your Biggest Block</span>
+          <p><strong>Your positioning isn't premium enough to charge what you're worth.</strong> The market sees you as a "good option" not the obvious expert. We'll reposition your entire online presence so you attract fewer, higher-paying clients who don't negotiate — freeing up your calendar and increasing revenue simultaneously.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testi-section">
+  <div class="testi-inner">
+    <div class="section-label">Real Results. Real Practitioners.</div>
+    <h2 class="section-h">They were exactly<br>where <em>you are right now.</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card wide">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"I'd been doing astrology for 6 years. Great clients, good word of mouth — but I was stuck at ₹40k a month and didn't know how to grow beyond that. In the clarity call they pointed out that my website had no reason for anyone to trust me immediately and my Google presence was basically zero. We fixed both in 5 weeks. I crossed ₹1.2L the next month and I hadn't spent a single rupee on ads."</div>
+        <div class="testi-footer">
+          <div class="testi-avatar">PS</div>
+          <div>
+            <div class="testi-name">Priya Sharma</div>
+            <div class="testi-role">Vedic Astrologer · Mumbai</div>
+          </div>
+          <div class="testi-result">₹40k → ₹1.2L/mo</div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"My crystal store had 4,200 Instagram followers and made ₹0 online for 8 months. One audit call later I understood exactly why. Completely rebuilt my product pages and added a proper landing page. Did ₹52,000 the next month without a single paid ad."</div>
+        <div class="testi-footer">
+          <div class="testi-avatar">AK</div>
+          <div>
+            <div class="testi-name">Anjali Kapoor</div>
+            <div class="testi-role">Crystal Store Owner · Pune</div>
+          </div>
+          <div class="testi-result">₹0 → ₹52k online</div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"As a B2B consultant, I thought my website looked professional enough. The audit showed me it looked like every other consultant's site — nothing that made me stand out. After the rebuild I started getting inbound enquiries from companies I'd been trying to approach for years."</div>
+        <div class="testi-footer">
+          <div class="testi-avatar">RM</div>
+          <div>
+            <div class="testi-name">Rahul Mehta</div>
+            <div class="testi-role">B2B Consultant · Delhi</div>
+          </div>
+          <div class="testi-result">3x inbound leads</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPLICATION -->
+<div class="apply-section" id="apply">
+  <div class="apply-inner">
+    <div class="section-label">The First Step</div>
+    <h2 class="section-h" style="margin-bottom:10px">The Clarity Call.<br><em>20 minutes. Everything changes.</em></h2>
+    <p class="section-sub" style="margin-bottom:40px">We'll look at your exact situation — your niche, your current presence, your goals — and tell you precisely what's blocking your growth and what to do about it. No pitch. No fluff. Just clarity.</p>
+
+    <div class="apply-box">
+      <div id="appForm">
+        <!-- PROGRESS -->
+        <div class="form-steps-bar">
+          <div class="fstep active" id="fp1"></div>
+          <div class="fstep" id="fp2"></div>
+          <div class="fstep" id="fp3"></div>
+          <div class="fstep" id="fp4"></div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div class="form-panel show" id="fp-1">
+          <div class="fpanel-label">Step 1 of 4</div>
+          <div class="fpanel-title">First, tell us about yourself.</div>
+          <div class="fg">
+            <label>Your name</label>
+            <input type="text" placeholder="Priya Sharma">
+          </div>
+          <div class="fg">
+            <label>What do you do? <span>(be specific — not just "consultant")</span></label>
+            <input type="text" placeholder="e.g. Vedic Astrologer, Reiki Healer, B2B IT Supplier…">
+          </div>
+          <div class="fg">
+            <label>Which best describes you?</label>
+            <div class="radio-stack">
+              <div class="ro"><input type="radio" name="niche" id="n1" value="spiritual"><label for="n1"><div class="rdot"></div>Astrologer, Tarot Reader, Reiki Healer, Numerologist or similar</label></div>
+              <div class="ro"><input type="radio" name="niche" id="n2" value="ecom"><label for="n2"><div class="rdot"></div>Spiritual / Wellness E-commerce (crystals, ritual products, etc.)</label></div>
+              <div class="ro"><input type="radio" name="niche" id="n3" value="b2b"><label for="n3"><div class="rdot"></div>B2B supplier, service provider or consultant</label></div>
+              <div class="ro"><input type="radio" name="niche" id="n4" value="other"><label for="n4"><div class="rdot"></div>Something else</label></div>
+            </div>
+          </div>
+          <div class="fnav">
+            <div></div>
+            <button class="fbtn-next" onclick="fGoTo(2)">Next →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-panel" id="fp-2">
+          <div class="fpanel-label">Step 2 of 4</div>
+          <div class="fpanel-title">Where are you right now?</div>
+          <div class="fg">
+            <label>What's your approximate monthly revenue from this business?</label>
+            <div class="radio-stack">
+              <div class="ro"><input type="radio" name="rev" id="rv1" value="zero" onchange="checkRev(this)"><label for="rv1"><div class="rdot"></div>Still building — not earning yet</label></div>
+              <div class="ro"><input type="radio" name="rev" id="rv2" value="low" onchange="checkRev(this)"><label for="rv2"><div class="rdot"></div>₹0–₹25,000/month</label></div>
+              <div class="ro"><input type="radio" name="rev" id="rv3" value="mid" onchange="checkRev(this)"><label for="rv3"><div class="rdot"></div>₹25,000–₹1,00,000/month</label></div>
+              <div class="ro"><input type="radio" name="rev" id="rv4" value="high" onchange="checkRev(this)"><label for="rv4"><div class="rdot"></div>₹1,00,000+/month</label></div>
+            </div>
+            <div class="disq-warn" id="rev-warn">
+              <strong>A note before you continue —</strong>
+              The Clarity Call is most valuable when there's existing traction to build on. If you're pre-revenue, the best use of your ₹499 right now is the Presence Audit — it'll give you a clear blueprint of what to build first, so you don't waste months on the wrong things. You can still complete this form and we'll point you in the right direction.
+            </div>
+          </div>
+          <div class="fg">
+            <label>Where do most of your clients come from today?</label>
+            <select>
+              <option value="">Choose the main one…</option>
+              <option>Word of mouth / referrals</option>
+              <option>Instagram or other social media</option>
+              <option>Google search</option>
+              <option>My website</option>
+              <option>I barely have clients yet</option>
+              <option>A mix of everything, nothing consistent</option>
+            </select>
+          </div>
+          <div class="fnav">
+            <button class="fbtn-back" onclick="fGoTo(1)">← Back</button>
+            <button class="fbtn-next" onclick="fGoTo(3)">Next →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="form-panel" id="fp-3">
+          <div class="fpanel-label">Step 3 of 4</div>
+          <div class="fpanel-title">What's actually going on?</div>
+          <div class="fg">
+            <label>What's your single biggest online presence problem right now?</label>
+            <div class="radio-stack">
+              <div class="ro"><input type="radio" name="prob" id="pr1"><label for="pr1"><div class="rdot"></div>Nobody finds me on Google — I'm invisible to people searching</label></div>
+              <div class="ro"><input type="radio" name="prob" id="pr2"><label for="pr2"><div class="rdot"></div>I post on social media but get no actual bookings or enquiries from it</label></div>
+              <div class="ro"><input type="radio" name="prob" id="pr3"><label for="pr3"><div class="rdot"></div>My website exists but I don't think it's converting anyone</label></div>
+              <div class="ro"><input type="radio" name="prob" id="pr4"><label for="pr4"><div class="rdot"></div>I can't charge higher prices — clients always push back or disappear</label></div>
+              <div class="ro"><input type="radio" name="prob" id="pr5"><label for="pr5"><div class="rdot"></div>Inconsistent — some months great, others completely dry</label></div>
+            </div>
+          </div>
+          <div class="fg">
+            <label>What have you already tried? <span>(briefly — this helps us not repeat what hasn't worked)</span></label>
+            <textarea placeholder="e.g. Hired a freelancer for my website, tried posting reels daily for 2 months, ran some Facebook ads, took a digital marketing course…"></textarea>
+          </div>
+          <div class="fnav">
+            <button class="fbtn-back" onclick="fGoTo(2)">← Back</button>
+            <button class="fbtn-next" onclick="fGoTo(4)">Next →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="form-panel" id="fp-4">
+          <div class="fpanel-label">Step 4 of 4 — Last one.</div>
+          <div class="fpanel-title">Where do you want to be in 90 days?</div>
+          <div class="fg">
+            <label>What's the outcome that would make the next 90 days a success for you?</label>
+            <textarea placeholder="e.g. I want to consistently get 15+ new enquiries a month from Google and Instagram, raise my session price from ₹2,000 to ₹6,000, and stop relying only on referrals…"></textarea>
+          </div>
+          <div class="fg">
+            <label>Your WhatsApp number <span>(we confirm your slot here — nothing else)</span></label>
+            <input type="tel" placeholder="+91 98765 43210">
+          </div>
+          <div class="fg">
+            <label>Your email <span>(for the written audit report we send after the call)</span></label>
+            <input type="email" placeholder="you@email.com">
+          </div>
+          <button class="fbtn-submit" onclick="fSubmit()">Submit My Application →</button>
+          <p class="fnote">We review every application within 24 hours and reach out on WhatsApp to schedule your call.</p>
+          <div class="fnav" style="margin-top:10px">
+            <button class="fbtn-back" onclick="fGoTo(3)">← Back</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- THANK YOU -->
+      <div class="thankyou" id="fThankyou">
+        <div class="ty-mark">✦</div>
+        <h3>Application received.</h3>
+        <p>We'll review your details, pre-audit your online presence, and reach out on WhatsApp within 24 hours to confirm your slot.</p>
+        <div class="ty-next">
+          <div class="ty-row"><div class="step-n">1</div><span>We review your application and look at your current online presence before the call.</span></div>
+          <div class="ty-row"><div class="step-n">2</div><span>You get a WhatsApp message within 24 hours with your confirmed time slot.</span></div>
+          <div class="ty-row"><div class="step-n">3</div><span>Show up for 20 minutes. Walk away knowing exactly what's blocking you — and how to fix it.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>PresenceOS™</strong> · Strategy-first organic growth for spiritual practitioners & B2B businesses<br>
+  <span style="font-size:12px;margin-top:6px;display:block;">No paid ads. No retainer traps. No generic agency work. Just a presence that gets you premium clients.</span>
+</footer>
+
+<script>
+// FORM
+let fStep = 1;
+function fGoTo(n) {
+  document.getElementById('fp-' + fStep).classList.remove('show');
+  fStep = n;
+  document.getElementById('fp-' + fStep).classList.add('show');
+  for(let i = 1; i <= 4; i++) {
+    const el = document.getElementById('fp' + i);
+    el.classList.remove('active','done');
+    if(i < fStep) el.classList.add('done');
+    if(i === fStep) el.classList.add('active');
+  }
+  document.getElementById('appForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function checkRev(el) {
+  document.getElementById('rev-warn').style.display = el.value === 'zero' ? 'block' : 'none';
+}
+function fSubmit() {
+  document.getElementById('appForm').style.display = 'none';
+  document.getElementById('fThankyou').style.display = 'block';
+  document.querySelector('.apply-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// STAGES
+function toggleStage(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.stage-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+
+// reveal text sequentially as it scrolls into view
+const handleFinalReveal = () => {
+  const container = document.querySelector('.letter');
+  // We target the paragraphs/divs that actually hold the text
+  const textBlocks = document.querySelectorAll('.letter p, .letter .letter-from');
+  
+  if (!container || textBlocks.length === 0) return;
+
+  const rect = container.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  // Animation triggers when top of section is 80% down, ends when bottom is 20% from top
+  const start = windowHeight * 0.8;
+  const end = windowHeight * 0.2;
+  
+  let globalProgress = (start - rect.top) / (rect.height + (start - end));
+  globalProgress = Math.max(0, Math.min(1, globalProgress));
+
+  const totalBlocks = textBlocks.length;
+
+  textBlocks.forEach((block, index) => {
+    const blockStart = index / totalBlocks;
+    const blockEnd = (index + 1) / totalBlocks;
+
+    let blockProgress = 0;
+
+    if (globalProgress > blockEnd) {
+      blockProgress = 1;
+    } else if (globalProgress < blockStart) {
+      blockProgress = 0;
+    } else {
+      blockProgress = (globalProgress - blockStart) / (blockEnd - blockStart);
+    }
+
+    block.style.setProperty('--progress', `${blockProgress * 100}%`);
+  });
+};
+
+window.addEventListener('scroll', handleFinalReveal);
+window.addEventListener('DOMContentLoaded', handleFinalReveal);
+</script>
+</body>
+</html>
